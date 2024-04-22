@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="en">
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta charset="UTF-8"/>
+    <title th:text="${title}"></title>
+</head>
+<body>
+<div class="container">
+    <ul class="nav bg-dark">
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/list}">Estudiantes</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/teacher/list}">Profesores</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/claseVirtual/list}">Clase Virtual</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/programaLealtad/list}">Programa Lealtad</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" th:href="@{/pedidoOnline/list}">Pediodo Online</a>
+    
+    </ul>
+    <h1 class="text-success border border-primary" th:text="${title}"></h1>
+
+    <a th:href="@{/programaLealtad/form}" class="btn btn-success btn-xs">Crear Programa Lealtad</a>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Cliente</th>
+            <th>Puntos</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="programaLealtad: ${programaLealtades}">
+            <td th:text="${programaLealtad.id}"></td>
+            <td th:text="${programaLealtad.cliente}"></td>
+            <td th:text="${programaLealtad.puntos}"></td>
+            <td><a class="btn btn-primary btn-xs" th:href="@{/programaLealtad/form/} + ${programaLealtad.id}" th:text="'Editar'"></a></td>
+            <td><a class="btn btn-danger btn-xs" th:href="@{/programaLealtad/delete/} + ${programaLealtad.id}" th:text="'Eliminar'" onclick="return confirm('¿Estás seguro que quieres eliminar?')"></a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+</html>
